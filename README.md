@@ -69,9 +69,7 @@ dragula(containers,
 You can add containers dynamically later on.
 
 ```dart
-var drake = dragula([], {
-  copy: true
-});
+var drake = dragula([], copy: true);
 drake.containers.add(container);
 ```
 
@@ -81,12 +79,11 @@ And you could also not set any arguments, which defaults to a drake without cont
 var drake = dragula();
 ```
 
-
 The options are detailed below.
 
 #### `options.containers`
 
-Setting this option is effectively the same as passing the containers in the first argument to `dragula(containers, options)`.
+Setting this option is effectively the same as passing the containers in the first argument to `dragula(containers)`.
 
 #### `options.isContainer`
 
@@ -95,11 +92,11 @@ Besides the containers that you pass to `dragula`, or the containers you dynamic
 The example below dynamically treats all DOM elements with a CSS class of `dragula-container` as dragula containers for this `drake`.
 
 ```dart
-var drake = dragula([], {
-  isContainer: function (el) {
+var drake = dragula([], 
+  isContainer: (el) { 
     return el.classList.contains('dragula-container');
   }
-});
+);
 ```
 
 #### `options.moves`
