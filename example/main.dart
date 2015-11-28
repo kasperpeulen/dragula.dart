@@ -7,9 +7,9 @@ main() {
   dragula([$('left-defaults'), $('right-defaults')]);
 
   dragula([$('left-events'), $('right-events')])
-    ..on('drag', allowInterop((Element el, _) {
+    ..on('drag', (Element el, _) {
       return el.classes.remove('ex-moved');
-    }))
+    })
     ..on('drop', allowInterop((Element el, _, __, ___) {
       return el.classes.add('ex-moved');
     }))
@@ -27,15 +27,13 @@ main() {
   dragula([$('left-copy'), $('right-copy')], copy: true);
 
   dragula([$('left-copy-1tomany'), $('right-copy-1tomany')],
-      copy: allowInterop(
-          (Element el, Element source) => source == $('left-copy-1tomany')),
-      accepts: allowInterop(
+      copy: (Element el, Element source) => source == $('left-copy-1tomany'),
+      accepts:
           (Element el, Element source, Element handling, Element sibling) =>
-              source != $('left-copy-1tomany')));
+              source != $('left-copy-1tomany'));
 
   dragula([$('left-lovehandles'), $('right-lovehandles')],
-      moves: allowInterop(
-          (el, container, handle, sibling) => handle.className == 'handle'));
+      moves: (el, container, handle, sibling) => handle.className == 'handle');
 
   var sortable = $('sortable');
   dragula([sortable]);
