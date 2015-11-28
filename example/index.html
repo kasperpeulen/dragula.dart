@@ -152,8 +152,8 @@ dragula([$('left'), $('right')],
     copy: allowInterop(
         (Element el, Element source) => source == $('left')),
     accepts: allowInterop(
-        (Element el, Element source, Element handling, Element sibling) =>
-            source != $('left')));
+        (Element el, Element target, Element source, Element sibling) =>
+            target != $('left')));
           </code>
         </pre>
       </div>
