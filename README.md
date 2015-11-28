@@ -1,12 +1,12 @@
-# dragula.js wrapper for Dart
+# dragula.dart
 
 See https://github.com/bevacqua/dragula for the original source and documentation.
 
-# Demo
+## Demo
 
 Try out the [demo][1]!
 
-# Install
+## Install
 
 #### Including the JavaScript
 
@@ -26,7 +26,7 @@ There's a few CSS styles you need to incorporate in order for dragula to work as
 <link href='packages/dragula/dragula.css' rel='stylesheet' type='text/css'>
 ```
 
-# Usage
+## Usage
 
 Dragula provides the easiest possible API to make drag and drop a breeze in your applications.
 
