@@ -147,6 +147,7 @@ external Drake _dragula([List<Element> containers, DragulaOptions options]);
 
 @anonymous
 @JS()
+/// Don't use this class, set the options directly in the [dragula] function.
 class DragulaOptions {
   external factory DragulaOptions(
       {List<Element> containers,
