@@ -10,15 +10,15 @@ Try out the [demo][1]!
 
 #### Including the JavaScript
 
-There's a caveat to dragula. You shouldn't include it in the `<head>` of your web applications. It's bad practice to place scripts in the <head> according to the dragula author, and as such dragula makes no effort to support this use case.
+There's a caveat to dragula. You shouldn't include it in the `<head>` of your web applications. It's bad practice to place scripts in the `<head>` (according to the dragula author), and as such dragula makes no effort to support this use case.
 
-Place dragula in the <body>, instead:
+Place dragula in the `<body>`, instead:
 
 ```html
 <script src='packages/dragula/dragula.js'></script>
 ```
 
-Make sure you put your dart script *after* that.
+Make sure you put your dart script *after* the dragula script.
 
 #### Including the CSS!
 
