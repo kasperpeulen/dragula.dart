@@ -33,7 +33,7 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(left), document.getElementById(right)]);
+    dragula([querySelector('#left'), querySelector('#right')]);
           </code>
         </pre>
       </div>
@@ -55,16 +55,19 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(left), document.getElementById(right)])
-      .on('drag', function (el) {
-        el.className = el.className.replace('ex-moved', '');
-      }).on('drop', function (el) {
-        el.className += ' ex-moved';
-      }).on('over', function (el, container) {
-        container.className += ' ex-over';
-      }).on('out', function (el, container) {
-        container.className = container.className.replace('ex-over', '');
-      });
+  dragula([$('left-events'), $('right-events')])
+    ..on('drag', allowInterop((Element el, _) {
+      return el.classes.remove('ex-moved');
+    }))
+    ..on('drop', allowInterop((Element el, _, __, ___) {
+      return el.classes.add('ex-moved');
+    }))
+    ..on('over', allowInterop((_, Element container, __) {
+      return container.classes.add('ex-over');
+    }))
+    ..on('out', allowInterop((_, Element container, __) {
+      return container.classes.remove('ex-over');
+    }));
           </code>
         </pre>
       </div>
@@ -86,7 +89,7 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(single)], {
+    dragula([querySelector('#single')],
       removeOnSpill: true
     });
           </code>
@@ -107,9 +110,7 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(left), document.getElementById(right)], {
-      revertOnSpill: true
-    });
+    dragula([querySelector('#left'), querySelector('#right')], revertOnSpill: true);
           </code>
         </pre>
       </div>
@@ -128,9 +129,7 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(left), document.getElementById(right)], {
-      copy: true
-    });
+    dragula([querySelector('#left'), querySelector('#right')], copy: true);
           </code>
         </pre>
       </div>
@@ -149,14 +148,14 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(left), document.getElementById(right)], {
-      copy: function (el, source) {
-        return source === left
+    dragula([querySelector('#left'), querySelector('#right')],
+      copy: (el, source) {
+        return source == left
       },
-      accepts: function (el, target) {
-        return target !== left
+      accepts: (el, target) {
+        return target != left
       }
-    });
+    );
           </code>
         </pre>
       </div>
@@ -174,11 +173,11 @@
         </div>
         <pre>
           <code>
-    dragula([document.getElementById(left), document.getElementById(right)], {
-      moves: function (el, container, handle) {
+    dragula([querySelector('#left'), querySelector('#right')],
+      moves: (el, container, handle) {
         return handle.className === 'handle';
       }
-    });
+    );
           </code>
         </pre>
         <div>There are a few similar mechanisms to determine whether an element can be dragged from a certain container <a href='https://github.com/bevacqua/dragula#optionsmoves'>(<code>moves</code>)</a>, whether an element can be dropped into a certain container at a certain position <a href='https://github.com/bevacqua/dragula#optionsaccepts'>(<code>accepts</code>)</a>, and whether an element is able to originate a drag event <a href='https://github.com/bevacqua/dragula#optionsinvalid'>(<code>invalid</code>)</a>.</div>
@@ -197,7 +196,7 @@
         </div>
         <pre>
           <code>
-            dragula([document.getElementById(container)]);
+            dragula([querySelector('#container')]);
           </code>
         </pre>
       </div>
