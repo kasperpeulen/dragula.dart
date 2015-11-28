@@ -81,10 +81,6 @@ Drake dragula(List<Element> containers,
           ignoreInputTextSelection: ignoreInputTextSelection));
 }
 
-movesDefault() {
-
-}
-
 /// The dragula method returns a tiny object with a concise API.
 @JS()
 class Drake {
