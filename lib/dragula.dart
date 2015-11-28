@@ -1,10 +1,3 @@
-/// ## CSS
-/// Dragula uses only four CSS classes. Their purpose is quickly explained below, but you can check [`dist/dragula.css`][12] to see the corresponding CSS rules.
-///
-/// - `gu-unselectable` is added to the `mirrorContainer` element when dragging. You can use it to style the `mirrorContainer` while something is being dragged.
-/// - `gu-transit` is added to the source element when its mirror image is dragged. It just adds opacity to it.
-/// - `gu-mirror` is added to the mirror image. It handles fixed positioning and `z-index` _(and removes any prior margins on the element)_. Note that the mirror image is appended to the `mirrorContainer`, not to its initial container. Keep that in mind when styling your elements with nested rules, like `.list .item { padding: 10px; }`.
-/// - `gu-hide` is a helper class to apply `display: none` to an element.
 library dragula;
 
 import 'dart:html';
@@ -47,6 +40,7 @@ import 'package:js/js.dart';
 ///       mirrorContainer: document.body,    // set the element that gets mirror elements appended
 ///       ignoreInputTextSelection: true     // allows users to select input text, see details below
 ///     );
+///
 Drake dragula(List<Element> containers,
     {String direction: 'vertical',
     dynamic /*bool|Function*/ copy: false,
