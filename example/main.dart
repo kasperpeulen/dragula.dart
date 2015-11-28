@@ -34,7 +34,8 @@ main() {
               source != $('left-copy-1tomany')));
 
   dragula([$('left-lovehandles'), $('right-lovehandles')],
-      moves: (el, container, handle, sibling) => handle.className == 'handle');
+      moves: allowInterop(
+          (el, container, handle, sibling) => handle.className == 'handle'));
 
   var sortable = $('sortable');
   dragula([sortable]);
