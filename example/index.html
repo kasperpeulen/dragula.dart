@@ -148,14 +148,12 @@ dragula([querySelector('#left'), querySelector('#right')], copy: true);
         </div>
         <pre>
           <code>
-dragula([querySelector('#left'), querySelector('#right')],
-  copy: (el, source) {
-    return source == left
-  },
-  accepts: (el, target) {
-    return target != left
-  }
-);
+dragula([$('left'), $('right')],
+    copy: allowInterop(
+        (Element el, Element source) => source == $('left')),
+    accepts: allowInterop(
+        (Element el, Element source, Element handling, Element sibling) =>
+            source != $('left')));
           </code>
         </pre>
       </div>
@@ -173,11 +171,9 @@ dragula([querySelector('#left'), querySelector('#right')],
         </div>
         <pre>
           <code>
-dragula([querySelector('#left'), querySelector('#right')],
-  moves: (el, container, handle) {
-    return handle.className === 'handle';
-  }
-);
+dragula([$('left-lovehandles'), $('right-lovehandles')],
+    moves: allowInterop(
+        (el, container, handle, sibling) => handle.className == 'handle'));
           </code>
         </pre>
         <div>There are a few similar mechanisms to determine whether an element can be dragged from a certain container <a href='https://github.com/bevacqua/dragula#optionsmoves'>(<code>moves</code>)</a>, whether an element can be dropped into a certain container at a certain position <a href='https://github.com/bevacqua/dragula#optionsaccepts'>(<code>accepts</code>)</a>, and whether an element is able to originate a drag event <a href='https://github.com/bevacqua/dragula#optionsinvalid'>(<code>invalid</code>)</a>.</div>
