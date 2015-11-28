@@ -27,10 +27,11 @@ main() {
   dragula([$('left-copy'), $('right-copy')], copy: true);
 
   dragula([$('left-copy-1tomany'), $('right-copy-1tomany')],
-      copy: (Element el, Element source) => source == $('left-copy-1tomany'),
-      accepts:
+      copy: allowInterop(
+          (Element el, Element source) => source == $('left-copy-1tomany')),
+      accepts: allowInterop(
           (Element el, Element source, Element handling, Element sibling) =>
-              source != $('left-copy-1tomany'));
+              source != $('left-copy-1tomany')));
 
   dragula([$('left-lovehandles'), $('right-lovehandles')],
       moves: (el, container, handle, sibling) => handle.className == 'handle');
