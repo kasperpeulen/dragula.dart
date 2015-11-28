@@ -60,14 +60,14 @@ Drake dragula(List<Element> containers,
     bool isContainer(Element el),
     bool moves(Element el, Element source, Element handling, Element sibling),
     bool accepts(Element el, Element target, Element source, Element ref)}) {
-  moves ??= (Element el, Element source, Element handling, Element sibling) {
+  moves ??= allowInterop((Element el, Element source, Element handling, Element sibling) {
     return true;
-  };
-  accepts ??= (Element el, Element target, Element source, Element reference) {
+  });
+  accepts ??= allowInterop((Element el, Element target, Element source, Element reference) {
     return true;
-  };
-  invalid ??= (Element el, target) => false;
-  isContainer ??= (Element el) => false;
+  });
+  invalid ??= allowInterop((Element el, target) => false);
+  isContainer ??= allowInterop((Element el) => false);
   mirrorContainer ??= document.body;
 
   return _dragula(

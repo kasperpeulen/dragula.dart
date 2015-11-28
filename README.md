@@ -26,8 +26,6 @@ There's a few CSS styles you need to incorporate in order for dragula to work as
 <link href='packages/dragula/dragula.css' rel='stylesheet' type='text/css'>
 ```
 
-[1]: http://kasperpeulen.github.io/dragula.dart/
-
 # Usage
 
 Dragula provides the easiest possible API to make drag and drop a breeze in your applications.
@@ -244,3 +242,6 @@ Dragula uses only four CSS classes. Their purpose is quickly explained below, bu
 - `gu-transit` is added to the source element when its mirror image is dragged. It just adds opacity to it.
 - `gu-mirror` is added to the mirror image. It handles fixed positioning and `z-index` _(and removes any prior margins on the element)_. Note that the mirror image is appended to the `mirrorContainer`, not to its initial container. Keep that in mind when styling your elements with nested rules, like `.list .item { padding: 10px; }`.
 - `gu-hide` is a helper class to apply `display: none` to an element.
+
+
+[1]: http://kasperpeulen.github.io/dragula.dart/
