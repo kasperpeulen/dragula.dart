@@ -131,26 +131,21 @@ Drake dragula(List<Element> containers,
     bool copySortSource: false,
     bool revertOnSpill: false,
     bool removeOnSpill: false,
-    Element mirrorContainer /*: *document.body*/,
     ignoreInputTextSelection: true,
-    dynamic /*bool|Function*/ copy: false,
+    dynamic /*bool|(Element el, Element source) -> bool*/copy: false,
+    Element mirrorContainer /*: *document.body*/,
     bool invalid(Element el, target),
     bool isContainer(Element el),
     bool moves(Element el, Element source, Element handling, Element sibling),
     bool accepts(Element el, Element target, Element source, Element ref)}) {
-  moves ??= (Element el, Element source, Element handling, Element sibling) {
-    return true;
-  };
-  accepts ??= (Element el, Element target, Element source, Element reference) {
-    return true;
-  };
+  // other default values
+  mirrorContainer ??= document.body;
+  moves ??= (Element el, Element source, Element handling, Element sibling) => true;
+  accepts ??= (Element el, Element target, Element source, Element reference) => true;
   invalid ??= (Element el, target) => false;
   isContainer ??= (Element el) => false;
-  mirrorContainer ??= document.body;
 
-  if (copy is Function) {
-    copy = allowInterop(copy);
-  }
+  if (copy is Function) copy = allowInterop(copy);
   moves = allowInterop(moves);
   invalid = allowInterop(invalid);
   accepts = allowInterop(accepts);
@@ -240,41 +235,42 @@ class Drake {
     _rawDrake.on('drag', allowInterop(callback));
   }
 
-  /// Dragging event for `el` ended with either `cancel`, `remove`, or `drop`
+  /// Dragging event for [el] ended with either `cancel`, `remove`, or `drop`
   void onDragEnd(void callback(Element el)) {
     _rawDrake.on('dragend', allowInterop(callback));
   }
 
-  /// `el` was dropped into `target` before a `sibling` element, and originally came from `source`
+  /// [el] was dropped into [target] before a [sibling] element, and originally came from [source[.
   void onDrop(void callback(
       Element el, Element target, Element source, Element sibling)) {
     _rawDrake.on('drop', allowInterop(callback));
   }
 
-  /// `el` was being dragged but it got nowhere and went back into `container`, its last stable parent; `el` originally came from `source`
+  /// [el] was being dragged but it got nowhere and went back into [container],
+  /// its last stable parent; [el] originally came from [source]
   void onCancel(void callback(Element el, Element container, Element source)) {
     _rawDrake.on('cancel', allowInterop(callback));
   }
 
-  /// `el` was being dragged but it got nowhere and it was removed from the DOM.
-  /// Its last stable parent was `container`, and originally came from `source`
+  /// [el] was being dragged but it got nowhere and it was removed from the DOM.
+  /// Its last stable parent was [container], and originally came from [source]
   void onRemove(void callback(Element el, Element container, Element source)) {
     _rawDrake.on('remove', allowInterop(callback));
   }
 
-  /// `el`, _the visual aid shadow_, was moved into `container`. May trigger
-  /// many times as the position of `el` changes, even within the same `container`;
-  /// `el` originally came from `source`
+  /// [el], _the visual aid shadow_, was moved into [container]. May trigger
+  /// many times as the position of [el] changes, even within the same [container];
+  /// [el] originally came from [source]
   void onShadow(void callback(Element el, Element container, Element source)) {
     _rawDrake.on('shadow', allowInterop(callback));
   }
 
-  /// `el` is over `container`, and originally came from `source`
+  /// [el] is over [container], and originally came from [source]
   void onOver(void callback(Element el, Element container, Element source)) {
     _rawDrake.on('over', allowInterop(callback));
   }
 
-  /// `el` was dragged out of `container` or dropped, and originally came from `source`
+  /// [el] was dragged out of [container] or dropped, and originally came from [source]
   void onOut(void callback(Element el, Element container, Element source)) {
     _rawDrake.on('out', allowInterop(callback));
   }
