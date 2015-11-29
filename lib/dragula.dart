@@ -158,7 +158,7 @@ Drake dragula(List<Element> containers,
   accepts = allowInterop(accepts);
   isContainer = allowInterop(isContainer);
 
-  return raw.dragula(
+  raw.Drake drake = raw.dragula(
       containers,
       new raw.DragulaOptions(
           direction: direction,
@@ -172,4 +172,122 @@ Drake dragula(List<Element> containers,
           removeOnSpill: removeOnSpill,
           mirrorContainer: mirrorContainer,
           ignoreInputTextSelection: ignoreInputTextSelection));
+  return new Drake._(drake);
+}
+
+class Drake {
+  raw.Drake _rawDrake;
+
+  Drake._(this._rawDrake);
+
+  /// This property contains the collection of containers that was passed to
+  /// `dragula` when building this `drake` instance. You can `push` more
+  /// containers and `splice` old containers at will.
+  List<Element> get containers => _rawDrake.containers;
+
+  /// This property will be `true` whenever an element is being dragged.
+  bool get dragging => _rawDrake.dragging;
+
+  /// Enter drag mode **without a shadow**.
+  ///
+  /// This method is most useful when providing complementary keyboard shortcuts
+  /// to an existing drag and drop
+  /// solution. Even though a shadow won't be created at first, the user will
+  /// get one as soon as they click on `item` and start dragging it around.
+  /// Note that if they click and drag something else, `.end` will be called
+  /// before picking up the new item.
+  void start(Element item) => _rawDrake.start(item);
+
+  /// Gracefully end the drag event as if using **the last position marked by
+  /// the preview shadow** as the drop target. The proper `cancel` or `drop`
+  /// event will be fired, depending on whether the item was dropped back where
+  /// it was originally lifted from
+  /// _(which is essentially a no-op that's treated as a `cancel` event)_.
+  void end() => _rawDrake.end();
+
+  /// If an element managed by `drake` is currently being dragged, this method
+  /// will gracefully cancel the drag action. You can also pass in `revert` at
+  /// the method invocation level, effectively producing the same result as if
+  /// `revertOnSpill` was `true`.
+  ///
+  /// Note that **a _"cancellation"_ will result in a `cancel` event** only in the following scenarios.
+  ///
+  /// - `revertOnSpill` is `true`
+  /// - Drop target _(as previewed by the feedback shadow)_ is the source container **and** the item is dropped in the same position where it was originally dragged from
+  void cancel([bool revert]) => _rawDrake.cancel(revert);
+
+  /// If an element managed by `drake` is currently being dragged, this method will gracefully remove it from the DOM.
+  void remove() => _rawDrake.remove();
+
+  /// The `drake` is an event emitter. The following events can be tracked using `drake.on(type, listener)`:
+  ///
+  /// Event Name | Listener Arguments               | Event Description
+  /// -----------|----------------------------------|-------------------------------------------------------------------------------------
+  /// `drag`     | `el, source`                     | `el` was lifted from `source`
+  /// `dragend`  | `el`                             | Dragging event for `el` ended with either `cancel`, `remove`, or `drop`
+  /// `drop`     | `el, target, source, sibling`    | `el` was dropped into `target` before a `sibling` element, and originally came from `source`
+  /// `cancel`   | `el, container, source`          | `el` was being dragged but it got nowhere and went back into `container`, its last stable parent; `el` originally came from `source`
+  /// `remove`   | `el, container, source`          | `el` was being dragged but it got nowhere and it was removed from the DOM. Its last stable parent was `container`, and originally came from `source`
+  /// `shadow`   | `el, container, source`          | `el`, _the visual aid shadow_, was moved into `container`. May trigger many times as the position of `el` changes, even within the same `container`; `el` originally came from `source`
+  /// `over`     | `el, container, source`          | `el` is over `container`, and originally came from `source`
+  /// `out`      | `el, container, source`          | `el` was dragged out of `container` or dropped, and originally came from `source`
+  /// `cloned`   | `clone, original, type`          | DOM element `original` was cloned as `clone`, of `type` _(`'mirror'` or `'copy'`)_. Fired for mirror images and when `copy: true`
+  void on(String event, Function callback) {
+    _rawDrake.on(event, allowInterop(callback));
+  }
+
+  /// [el] was lifted from [source]
+  void onDrag(void callback(Element el, Element source)) {
+    _rawDrake.on('drag', allowInterop(callback));
+  }
+
+  /// Dragging event for `el` ended with either `cancel`, `remove`, or `drop`
+  void onDragEnd(void callback(Element el)) {
+    _rawDrake.on('dragend', allowInterop(callback));
+  }
+
+  /// `el` was dropped into `target` before a `sibling` element, and originally came from `source`
+  void onDrop(void callback(
+      Element el, Element target, Element source, Element sibling)) {
+    _rawDrake.on('drop', allowInterop(callback));
+  }
+
+  /// `el` was being dragged but it got nowhere and went back into `container`, its last stable parent; `el` originally came from `source`
+  void onCancel(void callback(Element el, Element container, Element source)) {
+    _rawDrake.on('cancel', allowInterop(callback));
+  }
+
+  /// `el` was being dragged but it got nowhere and it was removed from the DOM.
+  /// Its last stable parent was `container`, and originally came from `source`
+  void onRemove(void callback(Element el, Element container, Element source)) {
+    _rawDrake.on('remove', allowInterop(callback));
+  }
+
+  /// `el`, _the visual aid shadow_, was moved into `container`. May trigger
+  /// many times as the position of `el` changes, even within the same `container`;
+  /// `el` originally came from `source`
+  void onShadow(void callback(Element el, Element container, Element source)) {
+    _rawDrake.on('shadow', allowInterop(callback));
+  }
+
+  /// `el` is over `container`, and originally came from `source`
+  void onOver(void callback(Element el, Element container, Element source)) {
+    _rawDrake.on('over', allowInterop(callback));
+  }
+
+  /// `el` was dragged out of `container` or dropped, and originally came from `source`
+  void onOut(void callback(Element el, Element container, Element source)) {
+    _rawDrake.on('out', allowInterop(callback));
+  }
+
+  /// DOM element `original` was cloned as `clone`, of `type` _(`'mirror'` or `'copy'`)_.
+  /// Fired for mirror images and when `copy: true`
+  void onCloned(void callback(Element el, Element container, Element source)) {
+    _rawDrake.on('cloned', allowInterop(callback));
+  }
+
+  /// Removes all drag and drop events used by `dragula` to manage drag and drop
+  /// between the `containers`. If `.destroy` is called while an element is being
+  /// dragged, the drag will be effectively cancelled.
+  void destroy() => _rawDrake.destroy();
 }

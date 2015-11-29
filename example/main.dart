@@ -7,18 +7,18 @@ main() {
   dragula([$('left-defaults'), $('right-defaults')]);
 
   dragula([$('left-events'), $('right-events')])
-    ..on('drag', (Element el, _) {
+    ..onDrag((Element el, _) {
       return el.classes.remove('ex-moved');
     })
-    ..on('drop', allowInterop((Element el, _, __, ___) {
+    ..onDrop((Element el, _, __, ___) {
       return el.classes.add('ex-moved');
-    }))
-    ..on('over', allowInterop((_, Element container, __) {
+    })
+    ..onOver((_, Element container, __) {
       return container.classes.add('ex-over');
-    }))
-    ..on('out', allowInterop((_, Element container, __) {
+    })
+    ..onOut((_, Element container, __) {
       return container.classes.remove('ex-over');
-    }));
+    });
 
   dragula([$('left-rm-spill'), $('right-rm-spill')], removeOnSpill: true);
 
