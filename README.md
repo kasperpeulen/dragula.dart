@@ -1,6 +1,6 @@
 # dragula.dart
 
-See https://github.com/bevacqua/dragula for the original source and documentation.
+See [https://github.com/bevacqua/dragula](https://github.com/bevacqua/dragula) for the original source and documentation.
 
 ## Demo
 
