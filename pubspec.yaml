@@ -1,6 +1,6 @@
 name: dragula
 description: Dragula bindings for Dart.
-version: 0.0.7
+version: 0.0.8
 author: Kasper Peulen <kasperpeulen@gmail.com>
 homepage: https://github.com/kasperpeulen/dragula.dart
 environment:
