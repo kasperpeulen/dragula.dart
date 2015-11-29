@@ -10,5 +10,5 @@ dependencies:
 dev_dependencies:
   browser: any
 #  dart_to_js_script_rewriter: any
-transformers:
+#transformers:
 #- dart_to_js_script_rewriter
