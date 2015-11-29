@@ -1,7 +1,13 @@
-/// The difference between this API and the raw_dragula API is that in this API
-/// you don't need to use `allowInterop` for the dart functions you pass to
-/// javascript. Also instead of `dragula(containers, new DragulaOptions(copy: true));`
-/// , you must write in this API `dragula(containers, copy: true)`.
+/// The difference between this API and the [raw_dragula] API is that here
+/// you don't need to use [allowInterop] for the dart functions you pass to
+/// javascript. Also in [raw_dragula] you have to use:
+///
+///     dragula(containers, new DragulaOptions(copy: true));
+///
+/// In this API, you can use the shorter:
+///
+///     dragula(containers, copy: true)
+///
 library dragula;
 
 import 'dart:html';
@@ -11,6 +17,8 @@ import 'package:dragula/dragula_raw.dart' as raw;
 import 'package:dragula/dragula_raw.dart' show Drake;
 export 'package:dragula/dragula_raw.dart' show Drake;
 
+/// Makes all the elements in the [containers] draggable.
+///
 /// By default, `dragula` will allow the user to drag an element in any of the
 /// [containers] and drop it in any other container in the list. If the element
 /// is dropped anywhere that's not one of the [containers], the event will be

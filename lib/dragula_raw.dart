@@ -4,6 +4,8 @@ library dragula_raw;
 import 'dart:html';
 import 'package:js/js.dart';
 
+/// Makes all the elements in the [containers] draggable.
+///
 /// By default, `dragula` will allow the user to drag an element in any of the
 /// [containers] and drop it in any other container in the list. If the element
 /// is dropped anywhere that's not one of the [containers], the event will be
@@ -56,8 +58,10 @@ class Drake {
   /// This property will be `true` whenever an element is being dragged.
   external bool get dragging;
 
-  /// Enter drag mode **without a shadow**. This method is most useful when
-  /// providing complementary keyboard shortcuts to an existing drag and drop
+  /// Enter drag mode **without a shadow**.
+  ///
+  /// This method is most useful when providing complementary keyboard shortcuts
+  /// to an existing drag and drop
   /// solution. Even though a shadow won't be created at first, the user will
   /// get one as soon as they click on `item` and start dragging it around.
   /// Note that if they click and drag something else, `.end` will be called
