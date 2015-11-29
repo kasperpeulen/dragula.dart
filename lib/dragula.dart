@@ -10,9 +10,9 @@
 ///
 library dragula;
 
-import 'dart:html';
+import 'dart:html' show Element, document;
 
-import 'package:js/js.dart';
+import 'package:js/js.dart' show allowInterop;
 import 'package:dragula/dragula_raw.dart' as raw;
 
 /// Makes all the elements in the [containers] draggable.

@@ -55,7 +55,7 @@ dragula([querySelector('#left'), querySelector('#right')]);
         </div>
         <pre>
           <code>
-dragula([$('left-events'), $('right-events')])
+dragula([querySelector('left-events'), querySelector('right-events')])
   ..onDrag((Element el, _) {
     return el.classes.remove('ex-moved');
   })
@@ -146,9 +146,9 @@ dragula([querySelector('#left'), querySelector('#right')], copy: true);
         </div>
         <pre>
           <code>
-dragula([$('left'), $('right')],
-    copy: (Element el, Element source) => source == $('left'),
-    accepts: (Element el, Element target, Element source, Element sibling) => target != $('left')));
+dragula([querySelector('left'), querySelector('right')],
+    copy: (Element el, Element source) => source == querySelector('left'),
+    accepts: (Element el, Element target, Element source, Element sibling) => target != querySelector('left')));
           </code>
         </pre>
       </div>
@@ -166,7 +166,7 @@ dragula([$('left'), $('right')],
         </div>
         <pre>
           <code>
-dragula([$('left-lovehandles'), $('right-lovehandles')],
+dragula([querySelector('left-lovehandles'), querySelector('right-lovehandles')],
     moves: (el, container, handle, sibling) => handle.className == 'handle');
           </code>
         </pre>

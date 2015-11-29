@@ -1,8 +1,8 @@
 /// This library provides an API as close as it can gets to the original.
 library dragula_raw;
 
-import 'dart:html';
-import 'package:js/js.dart';
+import 'dart:html' show Element;
+import 'package:js/js.dart' show JS, anonymous;
 
 /// Makes all the elements in the [containers] draggable.
 ///
@@ -112,7 +112,6 @@ class Drake {
 
 @anonymous
 @JS()
-
 /// The options you can pass to the [dragula] function.
 class DragulaOptions {
 
