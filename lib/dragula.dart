@@ -14,8 +14,6 @@ import 'dart:html';
 
 import 'package:js/js.dart';
 import 'package:dragula/dragula_raw.dart' as raw;
-import 'package:dragula/dragula_raw.dart' show Drake;
-export 'package:dragula/dragula_raw.dart' show Drake;
 
 /// Makes all the elements in the [containers] draggable.
 ///
@@ -175,6 +173,7 @@ Drake dragula(List<Element> containers,
   return new Drake._(drake);
 }
 
+/// The dragula method returns this tiny object with a concise API.
 class Drake {
   raw.Drake _rawDrake;
 

@@ -1,7 +1,6 @@
 import 'package:dragula/dragula.dart';
 import 'dart:html';
 import 'dart:async';
-import 'package:js/js.dart';
 
 main() {
   dragula([$('left-defaults'), $('right-defaults')]);
