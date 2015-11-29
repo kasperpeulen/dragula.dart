@@ -1,6 +1,6 @@
 name: dragula
 description: Dragula bindings for Dart.
-version: 0.0.11
+version: 0.1.0
 author: Kasper Peulen <kasperpeulen@gmail.com>
 homepage: https://github.com/kasperpeulen/dragula.dart
 environment:
@@ -10,5 +10,5 @@ dependencies:
 dev_dependencies:
   browser: any
   dart_to_js_script_rewriter: any
-transformers:
-- dart_to_js_script_rewriter
+#transformers:
+#- dart_to_js_script_rewriter
