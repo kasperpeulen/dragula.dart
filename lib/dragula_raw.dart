@@ -116,6 +116,8 @@ class Drake {
 /// The options you can pass to the [dragula] function.
 class DragulaOptions {
 
+  /// Here's an overview of all the options:
+  ///
   /// ### options.containers
   ///
   /// Setting this option is effectively the same as passing the containers in the first argument to `dragula(containers)`.
