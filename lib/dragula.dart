@@ -146,7 +146,7 @@ Drake dragula(List<Element> containers,
   invalid ??= (Element el, target) => false;
   isContainer ??= (Element el) => false;
 
-  if (copy is Function) copy = allowInterop(copy);
+  if (copy is Function) copy = allowInterop((copy as Function));
   moves = allowInterop(moves);
   invalid = allowInterop(invalid);
   accepts = allowInterop(accepts);
